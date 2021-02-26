@@ -24,7 +24,7 @@ typedef long long unsigned llu;
 #define bye                    return 0;
 #define file                freopen("input.txt","r",stdin);freopen("output.txt","w",stdout);
 #define endl                 '\n'
-
+ 
 template<class c>
 c gcd (c a,c b){
     if(b==0)
@@ -83,28 +83,33 @@ const int MOD = 1e9+7;
 void run(){    
     int n;
     cin >> n;
-    vector<int> v(n);
+    set<int> s;
     loop(i,0,n){
-        v[i] = i+1;
+        s.insert(i+1);
     }
-    auto i = v.begin();
-    while(!v.empty()){
-        if(i+1!=v.end()){
-            cout << *(i+1) << ' ';
-            v.erase(i+1);
-            if(i+1==v.end()){
-                i=v.begin();
+    auto i = s.begin();
+    while(!s.empty()){
+        auto j = i;
+        j++;
+        //cout << *j << endl;
+        if(j!=s.end()){
+            cout << *(j) << ' ';
+            s.erase(j);
+            j = i;
+            j++;
+            if(j==s.end()){
+                i=s.begin();
             }else{
                 i++;
             }
         }else{
-            cout << *(v.begin()) << ' ';
-            v.erase(v.begin());
-            i = v.begin();
+            cout << *(s.begin()) << ' ';
+            s.erase(s.begin());
+            i = s.begin();
         }
     }
 }
-
+ 
 int main(){
     hi;
     #ifndef ONLINE_JUDGE
